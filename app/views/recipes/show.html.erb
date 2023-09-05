@@ -1,0 +1,19 @@
+<h1><center><%= @recipe.name %></center></h1>
+<br>
+<h2>Complexity: <%= @recipe.complexity %></h2>
+<h2>Genre: <%= @recipe.genre %></h2>
+<h3> Ingredients </h3>
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
+<h3> Total Cost: $<%= @recipe.total_cost %>
+<br>
+<br>
+<h3> Add ingredient to recipe </h3>
+<%= form_with url: "/recipes/#{@recipe.id}", method: :patch, data: { turbo: false } do |form| %>
+  <%= form.label :id %>
+  <%= form.number_field :ingredient_id %>
+  <%= form.submit 'Add Ingredient' %>
+<% end %>
